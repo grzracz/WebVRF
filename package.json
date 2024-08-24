@@ -1,0 +1,25 @@
+{
+  "name": "webvrf",
+  "version": "1.0.0",
+  "description": "This library lets you use Verifiable Random Functions (VRF) in your web browser. It is based on the libsodium cryptographic library and provides a simple interface for generating VRF proofs and verifying them.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grzracz/WebVRF.git"
+  },
+  "keywords": [
+    "VRF",
+    "Algorand",
+    "web",
+    "javascript"
+  ],
+  "author": "grzracz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/grzracz/WebVRF/issues"
+  },
+  "homepage": "https://github.com/grzracz/WebVRF#readme"
+}

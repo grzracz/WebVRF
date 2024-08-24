@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VRF Demo</title>
+</head>
+<body>
+    <h1>VRF Demo</h1>
+    <div id="output"></div>
+    <script type="module">
+        import VRF from './index.js';
+
+        async function runDemo() {
+            await VRF.init();
+
+            const { publicKey, secretKey } = VRF.keypair();
+            console.log('Public Key:', publicKey);
+            console.log('Secret Key:', secretKey);
+
+            const message = new TextEncoder().encode('Hello, VRF!');
+            const { proof } = VRF.prove(secretKey, message);
+            console.log('Proof:', proof);
+
+            const { output, result } = VRF.verify(publicKey, proof, message);
+            console.log('Verification result:', result === 0 ? 'Success' : 'Failure');
+            console.log('Output:', output);
+
+            const { hash } = VRF.proofToHash(proof);
+            console.log('Hash:', hash);
+
+            document.getElementById('output').textContent = `Verification result: ${result === 0 ? 'Success' : 'Failure'}`;
+        }
+
+        runDemo().catch(console.error);
+    </script>
+</body>
+</html>
