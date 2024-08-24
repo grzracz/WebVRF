@@ -192,7 +192,7 @@ cp ../vrf_wrapper.c .
 emcc -O3 vrf_wrapper.c -I./deps/libsodium-1.0.16-algorand/src/libsodium/include -L./deps/libsodium-1.0.16-algorand/src/libsodium/.libs -lsodium -s WASM=1 -s EXPORTED_FUNCTIONS="['_malloc', '_free', '_vrf_publickeybytes', '_vrf_secretkeybytes', '_vrf_proofbytes', '_vrf_outputbytes']" -s EXPORTED_RUNTIME_METHODS="['ccall', 'cwrap']" -s ENVIRONMENT='web' -s INCOMING_MODULE_JS_API="['onRuntimeInitialized']" -sSINGLE_FILE -o vrf.js
 ```
 
-This should create _vrf.js_ and _vrf.wasm_ output files in package directory.
+This should create _vrf.js_ output file in package directory.
 
 ### 8. Export vrf.js
 
