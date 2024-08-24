@@ -1,6 +1,6 @@
 {
   "name": "webvrf",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "This library lets you use Verifiable Random Functions (VRF) in your web browser. It is based on the libsodium cryptographic library and provides a simple interface for generating VRF proofs and verifying them.",
   "main": "index.js",
   "scripts": {

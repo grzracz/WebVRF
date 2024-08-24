@@ -189,17 +189,24 @@ cp ../vrf_wrapper.c .
 ### 7. Compile vrf_wrapper using Emscripten
 
 ```bash
-emcc -O3 vrf_wrapper.c -I./deps/libsodium-1.0.16-algorand/src/libsodium/include -L./deps/libsodium-1.0.16-algorand/src/libsodium/.libs -lsodium -s WASM=1 -s EXPORTED_FUNCTIONS="['_malloc', '_free', '_vrf_publickeybytes', '_vrf_secretkeybytes', '_vrf_proofbytes', '_vrf_outputbytes']" -s EXPORTED_RUNTIME_METHODS="['ccall', 'cwrap']" -s ENVIRONMENT='web' -s INCOMING_MODULE_JS_API="['onRuntimeInitialized']" -o vrf.js
+emcc -O3 vrf_wrapper.c -I./deps/libsodium-1.0.16-algorand/src/libsodium/include -L./deps/libsodium-1.0.16-algorand/src/libsodium/.libs -lsodium -s WASM=1 -s EXPORTED_FUNCTIONS="['_malloc', '_free', '_vrf_publickeybytes', '_vrf_secretkeybytes', '_vrf_proofbytes', '_vrf_outputbytes']" -s EXPORTED_RUNTIME_METHODS="['ccall', 'cwrap']" -s ENVIRONMENT='web' -s INCOMING_MODULE_JS_API="['onRuntimeInitialized']" -sSINGLE_FILE -o vrf.js
 ```
 
 This should create _vrf.js_ and _vrf.wasm_ output files in package directory.
 
-### 8. Export vrf.js and vrf.wasm
+### 8. Export vrf.js
+
+You need to replace `const vrf_js_base64 = "..."` in _index.js_ with the base64-encoded content of _vrf.js_.
+
+You can generate it with this command:
+
+```bash
+base64 vrf.js | tr -d '\n'
+```
 
 Congrats, now you can use VRF in your web browser. To check, you can launch the _index.html_ file.
 
 ```
-cp vrf.js vrf.wasm ../
 python3 -m http.server
 ```
 
